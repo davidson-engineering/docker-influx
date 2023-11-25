@@ -1,10 +1,12 @@
 version: '3'
 services:
-    telegraf:
-        container_name: influxdb
-        image: telegraf:latest
+    influxdb:
+        image: influxdb
+        ports:
+            - 8086:8086
         volumes:
-            - ./telegraf.conf:/etc/telegraf/telegraf.conf
-        restart: unless-stopped
-        env_file:
-            - .env
+            - ./influxdb-data:/var/lib/influxdb
+        environment:
+            - INFLUXDB_DB=$INFLUXDB_DB
+            - INFLUXDB_ADMIN_USER=$INFLUXDB_ADMIN_USER
+            - INFLUXDB_ADMIN_PASSWORD=$INFLUXDB_ADMIN_PASSWORD
