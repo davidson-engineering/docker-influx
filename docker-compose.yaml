@@ -6,7 +6,5 @@ services:
             - 8086:8086
         volumes:
             - ./influxdb-data:/var/lib/influxdb
-        environment:
-            - INFLUXDB_DB=$INFLUXDB_DB
-            - INFLUXDB_ADMIN_USER=$INFLUXDB_ADMIN_USER
-            - INFLUXDB_ADMIN_PASSWORD=$INFLUXDB_ADMIN_PASSWORD
+        env_file:
+            - .env
