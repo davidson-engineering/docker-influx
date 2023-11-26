@@ -7,6 +7,7 @@ services:
             - 8086:8086
         volumes:
             - ./influxdb-data:/var/lib/influxdb
+            - /etc/localtime:/etc/localtime:ro #Sync timezone with host
         restart: unless-stopped
         env_file:
             - .env
